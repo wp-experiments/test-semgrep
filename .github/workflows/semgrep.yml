@@ -34,6 +34,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           ls -la
+          ls -la hello-world-sync
           echo "-------"
 
       # Fetch project source with GitHub Actions Checkout.
@@ -46,7 +47,9 @@ jobs:
       # Run the "semgrep ci" command on the command line of the docker image.
       - run: |
           semgrep ci
-          ls -la
+          ls -la 
+          ls -la hello-world-sync
+          ls -la main
           ls -la /__w/
           pwd
         env:
