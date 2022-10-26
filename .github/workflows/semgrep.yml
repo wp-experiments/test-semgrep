@@ -27,14 +27,22 @@ jobs:
 
     steps:
       - name: Check out the plugin repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
         with:
           repository: wp-experiments/hello-world-sync
           path: hello-world-sync
           token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          ls -la
+          echo "-------"
+
       # Fetch project source with GitHub Actions Checkout.
       - name: Check out the current repo
         uses: actions/checkout@v3
+        with:
+          path: main
+        
+
       # Run the "semgrep ci" command on the command line of the docker image.
       - run: |
           semgrep ci
