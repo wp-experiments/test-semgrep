@@ -43,12 +43,10 @@ jobs:
         with:
           path: main
         
-      - name: Decrypt GPG secrets
-        uses: minddocdev/decrypt-action@master
-        with:
-          files: main/xss/basic_xss.yaml.gpg
-        env:
-            GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      - name: Decrypt GPG file
+        run: |
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.GPG_PASSPHRASE }}" --output main/xss/basic_xss.yaml main/xss/basic_xss.yaml.gpg
+
       # Run the "semgrep ci" command on the command line of the docker image.
       - run: |
           semgrep ci
