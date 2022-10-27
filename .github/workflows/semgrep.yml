@@ -18,16 +18,16 @@ jobs:
       - uses: actions/checkout@v1
       - name: Decrypt file
         run: |
-            mkdir /__w/
-            gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output /__w/basic_xss.yaml xss/basic_xss.yaml.gpg
+            mkdir __w/
+            gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output __w/basic_xss.yaml xss/basic_xss.yaml.gpg
         env:
           PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       - name: listing the yaml file contents
-        run: cat /__w/basic_xss.yaml
+        run: cat __w/basic_xss.yaml
       - uses: actions/upload-artifact@master
         with:
           name: my-path
-          path: /__w/
+          path: __w/
           
   semgrep:
     needs: decrypt
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: my-path
-          path: /__w/
+          path: __w/
       - run: cat /__w/basic_xss.yaml
         
       # Run the "semgrep ci" command on the command line of the docker image.
