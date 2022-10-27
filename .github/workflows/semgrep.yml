@@ -42,12 +42,12 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: main
+      - name: Install gnupg2
+        run: sudo apt-get install -y gnupg2
         
       - name: Decrypt GPG file
         run: |
           whoami
-          apt-get update
-          apt-get install gnupg2
           gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.GPG_PASSPHRASE }}" --output main/xss/basic_xss.yaml main/xss/basic_xss.yaml.gpg
 
       # Run the "semgrep ci" command on the command line of the docker image.
