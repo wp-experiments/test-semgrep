@@ -64,7 +64,7 @@ jobs:
         with:
           name: my-path
           path: __w/
-      - run: cat /__w/basic_xss.yaml
+      - run: cat __w/basic_xss.yaml
         
       # Run the "semgrep ci" command on the command line of the docker image.
       - run: |
