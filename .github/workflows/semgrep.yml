@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Decrypt file
-        run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output $HOME/xss/basic_xss.yaml xss/basic_xss.yaml.gpg
+        run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output basic_xss.yaml xss/basic_xss.yaml.gpg
         env:
           PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
   semgrep:
