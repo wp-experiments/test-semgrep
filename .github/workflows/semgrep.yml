@@ -12,6 +12,14 @@ on:
     - cron: '30 0 1,15 * *' # Scheduled for 00:30 UTC on both the 1st and 15th of the month
 
 jobs:
+  decrypt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Decrypt file
+        run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output $HOME/xss/basic_xss.yaml xss/basic_xss.yaml.gpg
+        env:
+          PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
   semgrep:
     # User-definable name of this GitHub Actions job:
     name: Scan
@@ -42,8 +50,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: main
-      - name: Install gnupg2
-        run: apt install -y gnupg2
         
       - name: Decrypt GPG file
         run: |
