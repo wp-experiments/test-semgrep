@@ -17,7 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Decrypt file
-        run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output /__w/basic_xss.yaml xss/basic_xss.yaml.gpg
+        run: |
+            mkdir /__w/
+            gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output /__w/basic_xss.yaml xss/basic_xss.yaml.gpg
         env:
           PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       - name: listing the yaml file contents
