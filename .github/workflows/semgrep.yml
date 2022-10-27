@@ -23,6 +23,7 @@ jobs:
       - name: listing the yaml file contents
         run: cat basic_xss.yaml
   semgrep:
+    needs: decrypt
     # User-definable name of this GitHub Actions job:
     name: Scan
     # If you are self-hosting, change the following `runs-on` value: 
