@@ -20,6 +20,8 @@ jobs:
         run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output basic_xss.yaml xss/basic_xss.yaml.gpg
         env:
           PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      - name: listing the yaml file contents
+        run: cat basic_xss.yaml
   semgrep:
     # User-definable name of this GitHub Actions job:
     name: Scan
@@ -57,6 +59,7 @@ jobs:
           ls -la 
           ls -la hello-world-sync
           ls -la main
+          ls -la main/xss
           pwd
           
         env:
