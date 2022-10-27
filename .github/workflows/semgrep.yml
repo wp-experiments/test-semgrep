@@ -45,6 +45,8 @@ jobs:
         
       - name: Decrypt GPG file
         run: |
+          sudo apt-get update
+          sudo apt-get install gnupg2
           gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.GPG_PASSPHRASE }}" --output main/xss/basic_xss.yaml main/xss/basic_xss.yaml.gpg
 
       # Run the "semgrep ci" command on the command line of the docker image.
