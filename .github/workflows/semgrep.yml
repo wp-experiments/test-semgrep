@@ -43,7 +43,7 @@ jobs:
         with:
           path: main
       - name: Install gnupg2
-        run: sudo apt-get install -y gnupg2
+        run: apt install -y gnupg2
         
       - name: Decrypt GPG file
         run: |
