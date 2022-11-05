@@ -68,7 +68,7 @@ jobs:
         
       # Run the "semgrep ci" command on the command line of the docker image.
       - run: |
-          semgrep ci /__w/test-semgrep/test-semgrep
+          semgrep ci
           ls -la 
           ls -la hello-world-sync
           ls -la main
@@ -78,7 +78,7 @@ jobs:
         env:
            # Add the rules that Semgrep uses by setting the SEMGREP_RULES environment variable. 
            SEMGREP_RULES: __w/basic_xss.yaml  # more at semgrep.dev/explore
-
+           SEMGREP_REPO_NAME: 'wp-experiments/hello-world-sync'
            # Uncomment SEMGREP_TIMEOUT to set this job's timeout (in seconds):
            # Default timeout is 1800 seconds (30 minutes).
            # Set to 0 to disable the timeout.
